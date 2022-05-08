@@ -145,9 +145,9 @@ html, body {
 #canvas {
   /* display: none; */
   display: block;
-  aspect-ratio: 297 / 420;
-  width: 100%;
-  height: auto;
+  /* aspect-ratio: 297 / 420; */
+  width: 6.35cm;
+  height: 8.89cm;
 }
 
 #p5canvas {
