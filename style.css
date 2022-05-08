@@ -1,0 +1,179 @@
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
+  padding: 0;
+  margin: 0;
+  cursor: default;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: white;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+}
+
+.wrapper>* {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mid {
+  padding: 0;
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  font-family: 'Londrina Solid', cursive;
+}
+
+.mid>.box {
+  aspect-ratio: 297 / 100;
+  /* display: flex; */
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.pet-image {
+  margin-top: 50px;
+}
+
+.pet-name {
+  margin-bottom: 30px;
+  margin-left: 10%;
+  font-size: 200%;
+}
+
+.left>.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left, .right {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.left img {
+  width: 80% !important;
+  height: auto;
+}
+
+.body {
+  color: black;
+  width: 90%;
+  text-align: justify;
+  font-family: 'Arimo', sans-serif;
+}
+
+.right>.box {
+  background: white;
+}
+
+.buttons {
+  width: 90%;
+  text-align: center;
+  font-size: 150%;
+  font-family: 'Arimo', sans-serif;
+}
+
+.buttons>* {
+  background: white;
+  border: 3px solid #DF1580;
+  width: 100%;
+  padding: 10px;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+  color: black;
+}
+
+.pet-number {
+  margin-top: 5px;
+}
+
+/* #pet-switch {
+
+} */
+
+.grey {
+  background: 0;
+  /* border: white 0.6px solid; */
+}
+
+.pink {
+  background: white;
+  border: 10px #ffc400 solid;
+  border-radius: 15px;
+}
+
+.box {
+  aspect-ratio: 297 / 420;
+  width: 100%;
+  height: auto;
+}
+
+.box>img {
+  width: 100%;
+  height: auto;
+}
+
+#canvas {
+  /* display: none; */
+  display: block;
+  aspect-ratio: 297 / 420;
+  width: 100%;
+  height: auto;
+}
+
+#p5canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.bold {
+  font-weight: 400;
+}
+
+.regular {
+  font-weight: 100;
+}
+
+#petname {
+  position: absolute;
+  z-index: 500;
+  top: 10%;
+  left: parent + 10%;
+
+ /*  transform: translate(-50%, -50%); */
+  font-size: 250%
+}
+
+/* #SWITCH {
+  border: 10px #DF1580 solid;
+} */
