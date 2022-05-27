@@ -8,18 +8,45 @@ let boldSpan;
 let regularSpan;
 let randomNumber;
 let palette = [];
+let shapeNum;
+let SVGpaths;
+let font
+let font1
+let font2
+let shapes = [];
+let gen1
 
+let x = 0;
+let y = 0;
 
+let flower, flower1, flower2
+/*     flowerpath, flowerpath1, flowerpath2; */
+
+let rr, gg, bb;
 
 /* let petswitch = document.getElementById('pet-switch'); */
 
 
-function preload()
-{
+function preload(){
   data = loadTable("data.csv", "csv", "header");
   frameImage = loadImage("frame.png");
   frameImage.resize(width, height);
   frameImageData = frameImage;
+  font = loadFont("SerpentineStd-Medium.otf")
+  font1 = loadFont("FuturaLTProBold.otf");
+
+  gen1 = loadImage ("gen1.png");
+//The symbols
+
+  for ( let i=1; i<= 5 ; i++ ) {
+    let svgshape = loadSVG( "Deco" + i + ".svg" );
+
+    shapes.push( svgshape );
+  }
+  
+  // flower = loadSVG( "Deco1.svg" );
+  // flower1 = loadSVG( "Deco2.svg" );
+/*   flower2 = loadSVG( "Deco3.svg"); */
 }
 
 
@@ -28,11 +55,19 @@ function setup()
   var canvasDiv = document.getElementById('p5canvas');
   var widthParent = canvasDiv.offsetWidth;
   var heightParent = canvasDiv.offsetHeight;
-  console.log(widthParent);
-  console.log(heightParent);
-  var sketchCanvas = createCanvas(widthParent, heightParent);
-  console.log(sketchCanvas);
+  // console.log(widthParent);
+  // console.log(heightParent);
+
+  var sketchCanvas = createCanvas(widthParent, heightParent, SVG);
+  //console.log(sketchCanvas);
+
   sketchCanvas.parent("p5canvas");
+
+  // image( flower, 0, 0, 200, 200);
+  // console.log( flower );
+
+  gen1.CENTER
+
   let switchButton = createDiv("NEXT");
   switchButton.parent("buttons");
   switchButton.mouseClicked(randomImageShow);
@@ -42,6 +77,10 @@ function setup()
   regularSpan = createSpan();
   regularSpan.parent("petname");
   regularSpan.class("regular");
+  textFont(font1)
+  textSize(50)
+/*   textAlign(CENTER, CENTER) */
+  
 
   rows = data.getRows();
   for (let r = 0; r < rows.length; r++)
@@ -51,48 +90,81 @@ function setup()
     imagesArray.push(imageLPS);
   }
 
-  frameRate(1);
+
+
+/*   frameRate(10); */
 }
 
 
-function draw()
-{
-  background(255);
-}
 
 function mousePressed()
 {
+  noLoop();
+/* Loop(); */
+
 
 }
-
-function keyPressed() {
-  if (keyCode === 83) {
-  saveCanvas("LPS SKETCH" + frameCount + ".png");
-  pixel
-  }
-}
-
 
 function mouseReleased()
 {
-  noLoop();
+
 }
 
 
 
 function randomImageShow()
 {
+
+  background(255)
   frameImage = frameImageData;
   randomNumber = int(random(0, 434));
   imageMode(CENTER);
-  image(imagesArray[randomNumber], width / 2, height / 2, 350, 350);
-  let petname = rows[randomNumber].getString("Name");
+  image(imagesArray[randomNumber], width / 2, 270, 350, 350);
+  let petnumber = rows[randomNumber].getString ("Number");
+  let petname = rows[randomNumber].getString ("Name");
   console.log(randomNumber);
   console.log(petname);
-  boldSpan.html(petname);
-  regularSpan.html(" #" + (randomNumber + 1));
+/*   boldSpan.html(petname); */
+/*   regularSpan.html("#" + petnumber); */
   colorPalette();
+  shapeNum = 0;
+
+
+  blendMode(LIGHTEST);
+  image(gen1, 185, 40);
+
+  fill(0);
+
+  stroke (255);
+  strokeWeight(3);
+
+  textSize(25);
+  text(petname, width - 380, 50);
+  textAlign(RIGHT);
+
+  fill(0);
+  textSize(25);
+  text("#" + petnumber, width - 40, 50);
+  textAlign(LEFT);
+ 
+
 /*   displayFrame(); */
+
+// where the symbols appear//
+
+}
+function displayRandomShape( ) {
+    let randomshape = shapes[ floor( random( shapes.length ) ) ];
+    image(randomshape, random(500 ) , random(0,70),40,40);
+    image(randomshape, random(500 ) , random(450,700),40,40);
+    image(randomshape, random(30) , random(1000),40,40);
+    image(randomshape, random(460,500) , random(1000),40,40);
+
+  
+
+
+
+  
 }
 
 function colorPalette()
@@ -106,6 +178,7 @@ function colorPalette()
     let g = imagesArray[randomNumber].pixels[j + 1];
     let b = imagesArray[randomNumber].pixels[j + 2];
 
+ 
     let temp = colors.find((element) =>
     {
       return element.color[0] == r &&
@@ -126,45 +199,42 @@ function colorPalette()
     {
       temp.amount += 1;
     }
+ 
+
+    // palette.push(colors[(j + 1) * WHAT COLORS].color);
 
   }
   colors = colors.sort((a, b) => b.amount - a.amount);
   // console.log(colors);
   palette = [];
-  for (let j = 0; j < 5; j += 1)
-  {
-    fill(colors[(j + 1) * randomNumber + 700].color);
+  for (let j = 0; j < 10; j += 1) {
+/*     fill(colors[(j + 1) * 500].color); */
     let widness = int((width / 5));
     let xPos = widness * j;
-    rect(xPos, 0, widness, 50);
-    palette.push(colors[(j + 1) * 500].color);
+    rect(xPos, 0, widness, 0);
+    palette.push(colors[(j + 1) * 50].color);
   }
+
+  rr = red(palette[0])
+  gg = green(palette[0])
+  bb = blue(palette[0])
+
+  // how many symbols
+
+  for( let i=0; i<10 + floor( random( 100000 ) ); i++ )
+    displayRandomShape( );
+  
+SVGpaths = querySVG( '.flower' );
+SVGpaths.forEach( path => {
+  let randomcolor = palette[ floor( random( palette.length ) ) ];
+  path.attribute('fill', "rgb(" + red(randomcolor) + ", "
+                                + green(randomcolor) + ", "
+                                + blue(randomcolor) + ")" );
+} );
+
 }
 
-function displayFrame()
-{
 
-  frameImage.loadPixels();
-  console.log(palette);
-  for (let x = 0; x < width; x++)
-  {
-    for (let y = 0; y < height; y++)
-    {
-      let index = (x + y * width) * 4;
-      let redPixel = frameImage.pixels[index];
-      let greenPixel = frameImage.pixels[index + 1];
-      let bluePixel = frameImage.pixels[index + 2];
-      // const imgColor = frameImage.get(x, y);
-      const paletteColor = getPaletteColor(redPixel, greenPixel, bluePixel);
-      frameImage.pixels[index] = red(paletteColor);
-      frameImage.pixels[index + 1] = green(paletteColor);
-      frameImage.pixels[index + 2] = blue(paletteColor);
-    }
-  }
-  frameImage.updatePixels();
-  imageMode(CORNER);
-  image(frameImage, 0, 0, width, height);
-}
 
 function getPaletteColor(redImgColor, greenImgColor, blueImgColor)
 {
@@ -194,3 +264,53 @@ function getPaletteColor(redImgColor, greenImgColor, blueImgColor)
 
   return targetColor;
 }
+
+
+function keyPressed() {
+
+  // If you hit the s key, save an image
+  if (key == 's') {
+    save("LPS_" + frameCount + ".png");
+ /*  petname.save ; */
+  }
+}
+
+function draw()
+{
+  background(255);
+
+     x = random(width)
+    y = random(height)
+  
+
+}
+
+
+
+
+
+
+// function displayFrame()
+// {
+
+//   frameImage.loadPixels();
+//   console.log(palette);
+//   for (let x = 0; x < width; x++)
+//   {
+//     for (let y = 0; y < height; y++)
+//     {
+//       let index = (x + y * width) * 4;
+//       let redPixel = frameImage.pixels[index];
+//       let greenPixel = frameImage.pixels[index + 1];
+//       let bluePixel = frameImage.pixels[index + 2];
+//       // const imgColor = frameImage.get(x, y);
+//       const paletteColor = getPaletteColor(redPixel, greenPixel, bluePixel);
+//       frameImage.pixels[index] = red(paletteColor);
+//       frameImage.pixels[index + 1] = green(paletteColor);
+//       frameImage.pixels[index + 2] = blue(paletteColor);
+//     }
+//   }
+//   frameImage.updatePixels();
+//   imageMode(CORNER);
+//   image(frameImage, 0, 0, width, height);
+// }
