@@ -95,7 +95,8 @@ html, body {
 
 .right>.box {
   background: white;
-}
+/*   margin-top: 250px;
+ */}
 
 .buttons {
   width: 90%;

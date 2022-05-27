@@ -10,11 +10,12 @@ let randomNumber;
 let palette = [];
 let shapeNum;
 let SVGpaths;
-let font
-let font1
-let font2
+let font;
+let font1;
+let font2;
 let shapes = [];
-let gen1
+let gen1;
+let vindu;
 
 let x = 0;
 let y = 0;
@@ -32,10 +33,11 @@ function preload(){
   frameImage = loadImage("frame.png");
   frameImage.resize(width, height);
   frameImageData = frameImage;
-  font = loadFont("SerpentineStd-Medium.otf")
-  font1 = loadFont("FuturaLTProBold.otf");
+  font = loadFont("AirbrushNova-Regular.ttf")
+  font1 = loadFont("AirbrushNova-Regular.ttf");
 
-  gen1 = loadImage ("gen1.png");
+  gen1 = loadImage ("photoshop2.png");
+  vindu = loadImage ("vindu.png");
 //The symbols
 
   for ( let i=1; i<= 5 ; i++ ) {
@@ -78,7 +80,7 @@ function setup()
   regularSpan.parent("petname");
   regularSpan.class("regular");
   textFont(font1)
-  textSize(50)
+  textSize(100)
 /*   textAlign(CENTER, CENTER) */
   
 
@@ -119,7 +121,7 @@ function randomImageShow()
   frameImage = frameImageData;
   randomNumber = int(random(0, 434));
   imageMode(CENTER);
-  image(imagesArray[randomNumber], width / 2, 270, 350, 350);
+  image(imagesArray[randomNumber], width / 2, 300, 330, 330);
   let petnumber = rows[randomNumber].getString ("Number");
   let petname = rows[randomNumber].getString ("Name");
   console.log(randomNumber);
@@ -129,22 +131,21 @@ function randomImageShow()
   colorPalette();
   shapeNum = 0;
 
-
-  blendMode(LIGHTEST);
-  image(gen1, 185, 40);
+/*   image(vindu, 250, 350); */
+  image(gen1, 250, 350);
 
   fill(0);
 
   stroke (255);
-  strokeWeight(3);
+  strokeWeight(0);
 
-  textSize(25);
-  text(petname, width - 380, 50);
+  textSize(40);
+  text(petname, width - 460, 70);
   textAlign(RIGHT);
 
   fill(0);
   textSize(25);
-  text("#" + petnumber, width - 40, 50);
+  text("#" + petnumber, width - 40, 60);
   textAlign(LEFT);
  
 
@@ -155,10 +156,11 @@ function randomImageShow()
 }
 function displayRandomShape( ) {
     let randomshape = shapes[ floor( random( shapes.length ) ) ];
-    image(randomshape, random(500 ) , random(0,70),40,40);
-    image(randomshape, random(500 ) , random(450,700),40,40);
-    image(randomshape, random(30) , random(1000),40,40);
-    image(randomshape, random(460,500) , random(1000),40,40);
+  /*   image(randomshape, random(500 ) , random(0,1),40,40); */
+/*     image(randomshape, random(500 ) , random(699,700),40,40); */
+    image(randomshape, random(1) , random(1000),40,40);
+    image(randomshape, random(499,500) , random(1000),40,40);
+  /*   image(randomshape, random(300) , random(300),40,40); */
 
   
 
